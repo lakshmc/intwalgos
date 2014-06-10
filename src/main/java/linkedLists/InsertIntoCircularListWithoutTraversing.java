@@ -2,7 +2,7 @@ package linkedLists;
 
 /**
  * Problem: There is a singly linked circular list, where the tail.next points to the head. Given the head and a new node,
- * write an algorithm to insert the new node after the current tail, making it the new tail, without traversing the list,
+ * write an algorithm to insert the new node before the head, making it the new tail, without traversing the list,
  * while keeping the list circular.
  * Solution:
  * You need the new node to become the last node, which is pointed to from the former last node, and which points to the
@@ -13,6 +13,8 @@ package linkedLists;
     3. put the new value into the current head node
     4. make the new node the new head node
  * From: http://stackoverflow.com/a/1097061
+ *
+ * TIME COMPLEXITY is O(1)
  */
 public class InsertIntoCircularListWithoutTraversing {
     public static void main(String[] args) {
