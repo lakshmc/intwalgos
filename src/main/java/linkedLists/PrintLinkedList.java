@@ -33,6 +33,20 @@ public class PrintLinkedList {
             System.out.print(root.value+(root.next!=null?"->":""));
             root=root.next;
         }
+        System.out.print(root==null?"\n":root.value+"\n");
+    }
+
+    public static void printLoopedList(Node root, Node loopStartNode){
+        while(root!=null){
+            if(root.equals(loopStartNode)){
+                printCircularLinkedList(loopStartNode);
+                root=null; // break out of loop
+            } else {
+                System.out.print(root.value+(root.next!=null?"->":""));
+                root=root.next;
+            }
+        }
         System.out.println();
+
     }
 }
