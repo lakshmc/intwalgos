@@ -20,9 +20,17 @@ public class PrintLinkedList {
     public static void printLinkedList(Node root) {
         while(root!=null){
             System.out.print(root.value+(root.next!=null?"->":""));
-           /* if(root.next!=null){
-                System.out.print("->");
-            }*/
+            root=root.next;
+        }
+        System.out.println();
+    }
+
+    public static void printCircularLinkedList(Node root) {
+        Node originalRoot = root;
+        System.out.print(root.value+(root.next!=null?"->":""));
+        root=root.next;
+        while(root!=null && !originalRoot.equals(root)){
+            System.out.print(root.value+(root.next!=null?"->":""));
             root=root.next;
         }
         System.out.println();
