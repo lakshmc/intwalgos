@@ -1,10 +1,13 @@
 package IntArray;
 
+import util.Printer;
+
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
- * Created by IntelliJ IDEA.
- * User: lmohan
- * Date: 11/5/13
- * Time: 10:55 AM
+ * SEE FindKthLargestNumber/FindKthSmallestNumber.java for a cleaner answer.
+ *
  */
 public class FindNthElementQuickSelection {
     // uses zero index for search
@@ -12,11 +15,36 @@ public class FindNthElementQuickSelection {
         int[] i = {5,1, 4, 3, 2}; // 1,2,3,4,5
         //System.out.println(selectKth(i,2));
 
-        i=new int[]{9,4,6,2,7,1,5,7,0,2,100};
-        System.out.println(selectKth(i,10));
+        i=new int[]{23,35,23,55,78,2,98,101,14,9};
+        int[] arr = new int[]{23,35,23,55,78,2,98,101,14,9};
+
+        Arrays.sort(arr);
+        Printer.printArray(arr);
+
+        int k=3;
+        //find the 3 smallest number
+        System.out.println("smallest "+k+": ");
+        selectKth(i,3);
+
+        // find the 3rd largest number
+        System.out.println("largest "+k+": ");
+        selectKth(i,3);
+
+
+        /*for(int j=0;j<i.length;j++){
+            selectKth(i,j);
+        }*/
+
+
 
     }
 
+    /**
+     *
+     * @param arr
+     * @param k
+     * @return
+     */
     public static int selectKth(int[] arr, int k) {
         if (arr == null || arr.length <= k)
             throw new Error();
@@ -52,7 +80,27 @@ public class FindNthElementQuickSelection {
                 from = r + 1;
             }
         }
-
+        System.out.println("k is "+k+" and kth element is "+arr[k]);
         return arr[k];
+    }
+
+    private static int partition(int[] arr, int first, int last){
+        while(first<last){
+            int mid = (first+last)/2;
+            if(arr[first]>arr[mid]){
+                swap(arr, first,last);
+                last--;
+            } else{
+                first++;
+            }
+        }
+        return first;
+
+    }
+
+    private static void swap(int[] arr, int first, int last) {
+        int temp = arr[first];
+        arr[first]=arr[last];
+        arr[last]=temp;
     }
 }

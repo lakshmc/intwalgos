@@ -3,6 +3,10 @@ package trees;
 /**
  * Created on 5/11/14.
  */
+
+/**
+ * Height of a node = 1 + max(height of left node, height of right node)
+ */
 public class BTreeHeight {
     public static void main(String[] args) {
         BinaryNode one = new BinaryNode(1);
