@@ -39,6 +39,8 @@ public class BTreeTraversal {
         System.out.println("\nBFS: ");
         breadthFirstTraversalBFS(one);
 
+        System.out.println("\nBFS Single Queue: ");
+        breadthFirstTraversalBFSSingleQueue(one);
 
     }
 
@@ -64,6 +66,13 @@ public class BTreeTraversal {
         }
     }
 
+    /**
+     * Keep two queues to keep track of nodes in the current level and the children of each of those nodes.
+     * For each node in current node, print it and them put its children into the next-queue and once current queue is empty
+     * move the contents of next-queue to current queue. When the current the queue is empty, it means a level is done so print
+     * a next line.
+     *
+     */
     private static void breadthFirstTraversalBFS(BinaryNode root){
         Queue<BinaryNode> levelQueue = new LinkedList<BinaryNode>();
         Queue<BinaryNode> currentQueue = new LinkedList<BinaryNode>();
@@ -71,12 +80,10 @@ public class BTreeTraversal {
         while (!currentQueue.isEmpty()){
             BinaryNode node = currentQueue.remove();
             System.out.print(node.value);
-            if(levelQueue.isEmpty()){
-                if(node.left!=null)
-                    levelQueue.offer(node.left);
-                if(node.right!=null)
+            if(node.left!=null)
+                levelQueue.offer(node.left);
+            if(node.right!=null)
                 levelQueue.offer(node.right);
-            }
             if(currentQueue.isEmpty()){
                 System.out.println();
                 currentQueue.addAll(levelQueue);
@@ -84,6 +91,39 @@ public class BTreeTraversal {
             } else {
                 System.out.print(" ");
             }
+        }
+
+    }
+
+    /**
+     * same as above but, instead of using two queues this one uses single queue. This uses a counter to keep track current
+     * level nodes and next level nodes.
+     */
+
+    private static void breadthFirstTraversalBFSSingleQueue(BinaryNode root){
+        Queue<BinaryNode> currentQueue = new LinkedList<BinaryNode>();
+        currentQueue.offer(root);
+        int nextLevelCount=0;
+        int currentLevelCount=1;
+        while (!currentQueue.isEmpty()){
+            BinaryNode node = currentQueue.remove();
+            currentLevelCount--;
+            System.out.print(node.value);
+            if(node.left!=null){
+                currentQueue.offer(node.left);
+                nextLevelCount++;
+            }
+            if(node.right!=null){
+                currentQueue.offer(node.right);
+                nextLevelCount++;
+            }
+           if(currentLevelCount==0){
+               System.out.println();
+               currentLevelCount=nextLevelCount;
+               nextLevelCount=0;
+           }else {
+               System.out.print(" ");
+           }
         }
 
     }
