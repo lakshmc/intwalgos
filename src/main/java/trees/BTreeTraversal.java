@@ -1,5 +1,8 @@
 package trees;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Created on 5/11/14.
  */
@@ -32,6 +35,11 @@ public class BTreeTraversal {
         printPostOrder(one);
         System.out.print("\nIn: ");
         printInOrder(one);
+
+        System.out.println("\nBFS: ");
+        breadthFirstTraversalBFS(one);
+
+
     }
 
     private static void printPreOrder(BinaryNode node) {
@@ -54,5 +62,29 @@ public class BTreeTraversal {
             System.out.print(node.value+" ");
             printInOrder(node.right);
         }
+    }
+
+    private static void breadthFirstTraversalBFS(BinaryNode root){
+        Queue<BinaryNode> levelQueue = new LinkedList<BinaryNode>();
+        Queue<BinaryNode> currentQueue = new LinkedList<BinaryNode>();
+        currentQueue.offer(root);
+        while (!currentQueue.isEmpty()){
+            BinaryNode node = currentQueue.remove();
+            System.out.print(node.value);
+            if(levelQueue.isEmpty()){
+                if(node.left!=null)
+                    levelQueue.offer(node.left);
+                if(node.right!=null)
+                levelQueue.offer(node.right);
+            }
+            if(currentQueue.isEmpty()){
+                System.out.println();
+                currentQueue.addAll(levelQueue);
+                levelQueue.clear();
+            } else {
+                System.out.print(" ");
+            }
+        }
+
     }
 }

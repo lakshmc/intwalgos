@@ -34,6 +34,9 @@ public class LowestCommonAncestor {
         System.out.println("LCA: "+ getLCANode(thirteen, one, twelve));
     }
 
+    /**
+     *  This is a simple binary tree. See below for binary sorted tree
+     */
     private static BinaryNode getLCANode(BinaryNode root, BinaryNode node1, BinaryNode node2) {
         if(root==null){
             return null;
@@ -48,6 +51,24 @@ public class LowestCommonAncestor {
             }
 
             return (left!=null)? left: right;
+        }
+    }
+
+    /**
+     *  For binary sorted tree, the left child will be smaller and right child will be larger that the parent. Using that
+     *  we can narrow the search.
+     *
+     */
+    private static BinaryNode getLCANodeForBinarySearchTree(BinaryNode root, BinaryNode node1, BinaryNode node2) {
+        if(root==null || node1==null || node2==null){
+            return null;
+        }
+        if(node1.value>root.value && node2.value>root.value){
+            return getLCANodeForBinarySearchTree(root.right, node1, node2);
+        } else if(node1.value<root.value && node2.value<root.value){
+            return getLCANodeForBinarySearchTree(root.left, node1, node2);
+        } else {
+            return root;
         }
     }
 }
