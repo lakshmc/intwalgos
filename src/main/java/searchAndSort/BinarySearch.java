@@ -9,12 +9,38 @@ public class BinarySearch {
         binarySearchIterative(new int[]{1, 2, 5, 8, 10, 13, 16}, 13); // odd size
         binarySearchIterative(new int[]{1,2,8,10,13,16}, 13); // even size
         binarySearchIterative(new int[]{1,2,7,8,10,13,16}, 6); // not present, will be the third value
-        binarySearchIterative(new int[]{1,2,8,10,13,16}, 99); // not present, will be the last value
+        /*binarySearchIterative(new int[]{1,2,8,10,13,16}, 99); // not present, will be the last value
 
         binarySearchIterative(new int[]{1,2,8,10,13,16}, 15); // not present, will be the last value
 
         binarySearchIterative(new int[]{1,3,8,10,13,16}, 0); // not present, will be the first value
-        binarySearchIterative(new int[]{1,3,8,10,13,16}, 2); // not present, will be the first value
+        binarySearchIterative(new int[]{1,3,8,10,13,16}, 2); // not present, will be the first value*/
+
+        System.out.println("\nRecursive");
+        binarySearchRecursive(new int[]{1, 2, 5, 8, 10, 13, 16}, 13); // odd size
+        binarySearchRecursive(new int[]{1, 2, 8, 10, 13, 16}, 13); // even
+        binarySearchRecursive(new int[]{1, 2, 7, 8, 10, 13, 16}, 6); // not present, will be the third value
+
+    }
+
+    /**
+     * does binary search recursively. if not found returns -1.
+     */
+    public static void binarySearchRecursive(int[] array, int key) {
+        System.out.println("Search returned index:"+doBinarySearch(array, 0, array.length - 1, key));
+    }
+
+    private static int doBinarySearch(int[] array, int start, int end, int key) {
+        if(start>end)
+            return -1;
+        int mid = (start+end)/2;
+        if(array[mid]==key){
+            return mid;
+        } else if(array[mid]<key){
+            return doBinarySearch(array, mid+1, end, key);
+        } else {
+            return doBinarySearch(array, start, mid-1, key);
+        }
     }
 
     /**
@@ -26,18 +52,9 @@ public class BinarySearch {
         int startIndex=0;
         int endIndex=array.length-1;
         int mid=0;
-        /*
-        * this condition is for the edge case where the key is supposed to be at the end of the array. During iteration
-        * 'mid' value will only go upto the end index of the array, so the new key should be at mid+1 location.
-        */
-        if(array[endIndex]>key){
-            System.out.println(key+" not found. Should be at "+(endIndex+1));
-            return;
-        }
 
         while(startIndex<=endIndex){
             mid = (startIndex+endIndex)/2;
-            System.out.println("start: "+startIndex+" end: "+endIndex+" mid: "+mid);
             if(array[mid]==key){
                 System.out.println("found "+key +" at "+ (mid));
                 return;

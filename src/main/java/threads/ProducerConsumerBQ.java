@@ -6,10 +6,11 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by IntelliJ IDEA.
- * User: lmohan
- * Date: 11/4/13
- * Time: 9:48 AM
+ * Uses Blocking Queue to handle synchronization
+ * ArrayBlockingQueue takes max size as argument
+ * queue.put()-> adds an item to the queue. if queue is full, then the thread will wait (add() would throw exception)
+ * queue.take()-> removes an item from the queue. if queue is empty, then the thread will wait (remove() would throw exception)
+ *
  */
 
 public class ProducerConsumerBQ {
@@ -21,12 +22,13 @@ public class ProducerConsumerBQ {
         Thread producer = new Thread(new Runnable(){
                 public void run(){
                 Random rand = new Random();
-                    for(int i=0;i<20;i++){
+                    for(int i=0;i<20;i++){ // while(true) produces forever
                         int number = rand.nextInt(10);
                         System.out.println("producing:"+number +" queue:"+queue);
                         try {
                             queue.put(number);
-                            Thread.sleep(500);
+                            //Thread.sleep(500);
+                            TimeUnit.MILLISECONDS.sleep(500);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -36,7 +38,7 @@ public class ProducerConsumerBQ {
 
         Thread consumer = new Thread(new Runnable(){
             public void run(){
-                while(true){
+                while(true){ // consumes forever
                     try {
                         int number = queue.take();
                         TimeUnit.SECONDS.sleep(1);
