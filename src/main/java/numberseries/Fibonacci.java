@@ -11,6 +11,7 @@ public class Fibonacci {
     public static void main(String[] args){
         // two numbers
         printFibonacciSeries2(6);
+        System.out.println(fibonacciRecursive(6));
         printFibonacciSeries2(0);
         printFibonacciSeries2(1);
 
@@ -54,6 +55,20 @@ public class Fibonacci {
             }
         }
         System.out.println();
+    }
+
+    /**
+     * Note: doesnt print series, only the final number.
+     *
+     *
+     */
+    public static int fibonacciRecursive(int n)  {
+        if(n == 0)
+            return 0;
+        else if(n == 1)
+            return 1;
+        else
+            return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
     }
 
 }
