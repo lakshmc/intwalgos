@@ -12,7 +12,7 @@ import java.util.Set;
 
 public class StringPermuationsRecursive {
     public static void main(String[] args){
-        //permutation("abc");
+        permutation("abcd");
         Set<StringBuilder> perms1 = perms(new StringBuilder("abcd"));
         System.out.println("perms1"+"("+perms1.size()+")"+" = " + perms1);
 
@@ -22,14 +22,13 @@ public class StringPermuationsRecursive {
         permutation("", str);
     }
 
-    // just String and recursive, prints combinatio
+    // just String and recursive, prints combinations
     private static void permutation(String prefix, String str) {
-        System.out.println(prefix+" "+((str.length()==0)?"-":str));
-
-        if (str.length() == 0) System.out.println("");
+        int n = str.length();
+        if (n == 0) System.out.println(prefix);
         else {
-            for (int i = 0; i < str.length(); i++)
-                permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, str.length()));
+            for (int i = 0; i < n; i++)
+                permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n));
         }
     }
 

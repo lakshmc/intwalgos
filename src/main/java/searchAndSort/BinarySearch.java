@@ -46,7 +46,7 @@ public class BinarySearch {
     /**
      * Given 'sorted' int array and a value, find the location where the value is in the array.
      * if the value is not present, then return the location where it should be.
-     * O(n log(n))
+     * O(log(n))
      */
     private static void binarySearchIterative(int[] array, int key) {
         int startIndex=0;

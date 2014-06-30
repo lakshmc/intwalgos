@@ -29,7 +29,7 @@ public class LinkedListWithY {
      * 1. get length of first list. A
      * 2. get length of second list. B
      * 3  calc abs(A-B) = C
-     * 4. traverse the longer list by C nodes. this is h1. head of shoter list is h2
+     * 4. traverse the longer list by C nodes. this is h1. head of shorter list is h2
      * 5. At this time, the common node is at equal distance from both h1 and h2.
      * 6. until end of (one of the)list is reached (no Y node), or h1==h2 (h1 and h2 are the Y node) is satisfied, move h1 and h2 by one node.
      */

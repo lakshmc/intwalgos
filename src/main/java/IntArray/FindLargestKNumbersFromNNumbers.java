@@ -22,7 +22,7 @@ import java.util.*;
  *       array[i] into the queue. Auto sorting will guarantee that head is the smallest.
  *     - O(N log(K))
  *          - compared to N, K is usually small, insertion into priority queue is hash based so it is O(log K)
- *          - N log(K) is much smaller than N log(K) Eg: 1 billion * log(100) vs 1 billion * log (1 billion)
+ *          - N log(K) is much smaller than N log(N) Eg: 1 billion * log(100) vs 1 billion * log (1 billion)
  *
  * Ref: http://stackoverflow.com/a/19227860
  */
@@ -42,6 +42,9 @@ public class FindLargestKNumbersFromNNumbers {
     }
 
 
+    /**
+     * Method 2: Sort and iterate Nlog(N)
+     */
     private static void printKLargestNumbersInArrayNLogN(int[] data, int k){
         Long started = System.currentTimeMillis();
         System.out.println("Using array sort");
@@ -55,7 +58,9 @@ public class FindLargestKNumbersFromNNumbers {
         System.out.println("Time:"+(System.currentTimeMillis()-started));
     }
 
-
+    /**
+     * Method 3: Priority queue Nlog(K)
+     */
     private static void printKLargestNumbersInArrayNLogK(int[] data, int k){
         Long started = System.currentTimeMillis();
         System.out.println("Using priority queue");

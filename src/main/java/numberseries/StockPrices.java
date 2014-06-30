@@ -22,16 +22,16 @@ public class StockPrices {
         // stock price when profit was highest
         double max = Double.MIN_VALUE;
         // lowest stock price encountered
-        double bottom = values[0];
+        //double bottom = values[0];
         // highest profit encountered
         double maxDiff = Double.MIN_VALUE;
         // current profit/loss based on max and bottom
         double diff = 0;
 
-
+        // start at i=1
         for (int i = 1; i < values.length; i++){
-            System.out.println("Before ==> diff="+diff+" max diff="+maxDiff+" max= "+max+" bottom="+bottom);
-            System.out.println("dealing with "+values[i]+" and "+values[i-1]+" difference is "+(values[i] - values[i - 1]));
+            /*System.out.println("Before ==> diff="+diff+" max diff="+maxDiff+" max= "+max+" bottom="+bottom);
+            System.out.println("dealing with "+values[i]+" and "+values[i-1]+" difference is "+(values[i] - values[i - 1]));*/
 
             diff += values[i] - values[i - 1]; // current net gain/loss
 
@@ -42,19 +42,19 @@ public class StockPrices {
                 max = values[i];
             }
             // for new low in stock price, gain would be negative so set it to zero since we will buy the stock at this price.
-            if (values[i] < bottom){
+            /*if (values[i] < bottom){
                 bottom = values[i];
                 diff = 0;
-            }
+            }*/
             // same logic done differently
 
-           /* if (diff<0){
+            if (diff<0){
                 diff = 0;
-            }*/
-            System.out.println("After ==> diff="+diff+" max diff="+maxDiff+" max= "+max+" bottom="+bottom+"\n");
+            }
+            //System.out.println("After ==> diff="+diff+" max diff="+maxDiff+" max= "+max+" bottom="+bottom+"\n");
         }
         // end of the loop, you will have the the stock price for which profit was maximum, that is the sell price. Buy
         // price is simply sell price minus the max profit.
-        System.out.println("Buy at "+(max - maxDiff)+" Sell at "+ max);
+        System.out.println("Buy at "+(max - maxDiff)+" Sell at "+ max+" profit is: "+maxDiff);
     }
 }

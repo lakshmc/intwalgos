@@ -25,8 +25,7 @@ public class FindUnPairedNumberXOR {
 
     private static int findNonDupNumber(int a[]) {
         int value =0;
-        for(int i=0; i<a.length;i++) {
-            int arrayVal = a[i];
+        for (int arrayVal : a) {
             value = value ^ arrayVal;
         }
         return value;

@@ -1,6 +1,7 @@
 package stringarray;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -32,7 +33,7 @@ public class RemoveDuplicates {
     // prints like [a, b, c, d, e, f, g, h]
     private static String removeDuplicatesWithSet(String str){
         char[] srcArry = str.toCharArray();
-        Set<Character> charSet = new LinkedHashSet<Character>();
+        Set<Character> charSet = new LinkedHashSet<Character>(); // keeps order of insert
 
         for(char c: srcArry){
             charSet.add(c);
