@@ -2,7 +2,6 @@ package IntArray;
 
 /**
  * Created by IntelliJ IDEA.
- * User: lmohan
  * Date: 11/6/13
  * Time: 9:48 AM
  */

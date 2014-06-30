@@ -2,6 +2,8 @@ package IntArray;
 
 import util.Printer;
 
+import java.util.Arrays;
+
 
 /**
  * Given an array of unsorted int, find the kth largest element
@@ -19,7 +21,7 @@ import util.Printer;
  * 1. Make a partition for the full array and get the pivot index. The returned value is the index where the right number
  * is placed.
  * 2. If the index==k then we have our answer. if not,
- *  if k<pivot, then do partitioning from 0 to pivot and repeat from step 1
+ *  if k<pivot, then do partitioning from 0 to pivot-1 and repeat from step 1
  *  if k>pivot, then do partitioning from pivot+1 to array length and repeat from step 1
  * 3. keep recursing until start and end indices meet.
  *
@@ -33,28 +35,34 @@ public class FindKthLargestNumber {
         int[] A = {21, 3, 34, 5, 13, 8, 2, 55, 1, 19};
         int k = 4;
 
-        System.out.println(FindKthLargestNumber.quickselect(A, k)); // find largest Kth element
         //largestFirstpartition(A, 0, A.length - 1);
+        int value = FindKthLargestNumber.quickselect(A, k); // find largest Kth element
+        System.out.println(k+"th largest item: "+value);
+
+        // print the sorted array to see where the item actually is
+        int[] B = A;
+        Arrays.sort(B);
+        Printer.printArray(B);
 
     }
 
 
     public static int quickselect(int[] G, int k) {
+        if(k<0 || k > G.length-1){
+            return Integer.MIN_VALUE;
+        }
         return quickselect(G, 0, G.length - 1, k - 1);
     }
 
     private static int quickselect(int[] G, int first, int last, int k) {
-        if (first <= last) {
-            int pivot = largestFirstpartition(G, first, last);
-            if (pivot == k) {
-                return G[k];
-            }
-            if (pivot > k) {
-                return quickselect(G, first, pivot - 1, k);
-            }
-            return quickselect(G, pivot + 1, last, k);
+        int pivot = largestFirstpartition(G, first, last);
+        if (pivot == k) {
+            return G[k];
         }
-        return Integer.MIN_VALUE;
+        if (pivot > k) {
+            return quickselect(G, first, pivot - 1, k);
+        }
+        return quickselect(G, pivot + 1, last, k);
     }
 
     /**

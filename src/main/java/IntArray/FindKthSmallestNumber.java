@@ -2,6 +2,8 @@ package IntArray;
 
 import util.Printer;
 
+import java.util.Arrays;
+
 /**
  * Given an array of unsorted int, find the kth smallest element
  *
@@ -29,27 +31,35 @@ public class FindKthSmallestNumber {
         int k = 4;
 
         int[] A = new int[]{21, 3, 34, 5, 13, 8, 2, 55, 1, 19};
+
         //smallestFirstPartition(A, 0, A.length - 1);
-        System.out.println(FindKthSmallestNumber.quickselect(A, k)); // find smallest Kth element
+        int value = FindKthSmallestNumber.quickselect(A, k); // find smallest Kth element
+        System.out.println(k+"th smallest item: "+value);
+
+        // print the sorted array to see where the item actually is
+        int[] B = A;
+        Arrays.sort(B);
+        Printer.printArray(B);
 
     }
 
     public static int quickselect(int[] G, int k) {
-        return quickselect(G, 0, G.length - 1, k - 1);
+        if(k<0 || k > G.length-1){
+            return Integer.MIN_VALUE;
+        }
+        return quickselect(G, 0, G.length - 1, k - 1); // note that we are asking k-1 item
     }
 
     private static int quickselect(int[] G, int first, int last, int k) {
-        if (first <= last) {
-            int pivot = smallestFirstPartition(G, first, last);
-            if (pivot == k) {
-                return G[k];
-            }
-            if (pivot > k) {
-                return quickselect(G, first, pivot - 1, k);
-            }
-            return quickselect(G, pivot + 1, last, k);
+        int pivot = smallestFirstPartition(G, first, last);
+        if (pivot == k) {
+            return G[k];
         }
-        return Integer.MIN_VALUE;
+        if (pivot > k) {
+            return quickselect(G, first, pivot - 1, k);
+        }
+        return quickselect(G, pivot + 1, last, k);
+
     }
 
     /**
