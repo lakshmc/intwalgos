@@ -21,6 +21,8 @@ public class FindUnPairedNumberXOR {
      * XOR of a and b will return zero if a and b are same. In this algo, we XOR each element, so all the pairs cancel each other
      * and the only remaining number will be the unpaired number. it is like adding a bunch of positive and negative equal numbers
      * and one number with no negative pair. Add all, and only the unpaired number remains.
+     * This is same as saying all the numbers repeated even number of times will cancel themselves,
+     * so if there was one number that was repeated odd number of times, you will get that number in the end.
      */
 
     private static int findNonDupNumber(int a[]) {
