@@ -23,6 +23,7 @@ public class StringPermuationsRecursive {
     }
 
     // just String and recursive, prints combinations
+    // O(n*n!)-> for every n we need to calculate all of its permutations, so n times n!
     private static void permutation(String prefix, String str) {
         int n = str.length();
         if (n == 0) System.out.println(prefix);
