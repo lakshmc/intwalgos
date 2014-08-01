@@ -17,7 +17,7 @@ import java.util.TreeMap;
  * Time complexity : O(nlogn)
  * use of extra space allowed.
  * Solution: The idea is to find the elements smaller or equal to the item in an array. Sorting would help,
- * but we cannot lose the index of the item since we only have to check the number of smaller or eqaul items after
+ * but we cannot lose the index of the item since we only have to check the number of smaller or equal items after
  * that index. So we can insert the items into a BST in reverse order. Inserting into the BST makes sure the items
  * are sorted and we can quickly get the smaller items. We can start at the first item and load each to the BST
  * and then start again at first item and them find the ar_low values. Instead, we can load the array in reverse.
@@ -53,7 +53,7 @@ public class FindSubsequentSmallItemsCount {
             for(Map.Entry<Integer,Integer> entry :entrySet){
                 count=count+entry.getValue();
             }
-            result[i]=count-1;
+            result[i]=count-1; // minus one since we don't want the item itself included
         }
         Printer.printArray(result);
     }
