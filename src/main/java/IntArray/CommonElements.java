@@ -47,9 +47,9 @@ public class CommonElements {
         Set<Integer> commonSet = new HashSet<Integer>();
         for(int num: arr2){
             /**
-             * Binary search returns (negative)location of the item if it was in the array. So if the item is present in 5th place
-             * returns 5. if the item is not present, but it should be in 5th location in the sorted array, then will return -5.
-             * So any negative value means the item is not present in the array.
+             * Binary search returns (negative)location of the item if it was not in the array. So if the item is
+             * present in 5th place returns 5. if the item is not present, but it should be in 5th location in the
+             * sorted array, then will return -5. So any negative value means the item is not present in the array.
              */
             if(Arrays.binarySearch(arr1,num)>=0){ // item found.
                 commonSet.add(num); // adding to set so result contains only unique items
