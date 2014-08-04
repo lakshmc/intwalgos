@@ -14,6 +14,7 @@ import java.util.*;
  *
  *  Input:  ilikesamsunga
  *  String cannot be segmented (since there is no 'a' in dictionary)
+ *  http://www.geeksforgeeks.org/dynamic-programming-set-32-word-break-problem/
  */
 public class RebuildSentence {
 
