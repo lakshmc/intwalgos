@@ -47,7 +47,8 @@ public class FindKthSmallestNumber {
         if(k<0 || k > G.length-1){
             return Integer.MIN_VALUE;
         }
-        return quickselect(G, 0, G.length - 1, k - 1); // note that we are asking k-1 item
+        return quickselect(G, 0, G.length - 1, k - 1); // note that we are asking k-1 item (assuming k is not zero
+        // indexed-> k=5 means fifth item (index=4) not item in index = 5
     }
 
     private static int quickselect(int[] G, int first, int last, int k) {
