@@ -1,6 +1,7 @@
 package IOStuff;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,15 +20,33 @@ public class UserInputArray {
         Scanner s = new Scanner(System.in);
 
         System.out.println("Enter number:");
-        String str = s.nextLine();
-        while(str.length()>0){
-            numbers.add(Integer.parseInt(str));
-            System.out.println("Enter number:");
-            str = s.nextLine();
+       /* int i=0;
+        while(i>=0){
+            if(!s.hasNextInt()){
+                System.out.println("Only numbers allowed");
+                s.next(); // discard
+            } else {
+                System.out.println("Enter number:");
+                i = s.nextInt();
+                numbers.add(i);
+            }
+        }*/
+
+
+        try{
+            int i = s.nextInt();
+            while(i>0){
+                numbers.add(i);
+                System.out.println("Enter number:");
+                i = s.nextInt();
+            }
+            System.out.println("Index is:"+num);
+            System.out.println("Array is:" + numbers);
+        } catch (InputMismatchException e){
+            System.out.println("Only numbers are allowed:"+e.toString());
         }
 
-        System.out.println("Index is:"+num);
-        System.out.println("Array is:"+numbers);
+
     }
 
 }
