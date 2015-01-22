@@ -12,6 +12,8 @@ import java.util.*;
  things simple and provides an easy-to-follow example of a class that
  implements the Iterator interface. The method remove() is optional --- for
  the Deck class calling this method throws an exception
+
+ http://www.cs.duke.edu/csed/ap/cards/cardstuff.pdf
  */
 public class Deck implements Iterator<ICard> {
     private List<ICard> cards;

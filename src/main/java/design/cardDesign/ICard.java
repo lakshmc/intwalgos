@@ -7,6 +7,7 @@ package design.cardDesign;
   implemented. It's a simple way to use cards in the code without having access to a
  card's internals, without being able to create a specific card, and without knowing how cards are
  implemented.
+ http://www.cs.duke.edu/csed/ap/cards/cardstuff.pdf
  *
 
  */
