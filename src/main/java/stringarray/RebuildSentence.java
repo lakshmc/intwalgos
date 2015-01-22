@@ -92,14 +92,18 @@ public class RebuildSentence {
     private static void wordBreakAddToList(String str, Set<String> dict, String sentence){
         String prefix="", suffix="";
         if(str.length()==0) { // we have parsed all the characters for this recursion
-            System.out.println(sentence);
+            // we do recursion only if prefix is valid, and if resulting suffix turns out to be invalid then
+            // corresponding recursive call will never reach this point. i.e; incoming string will never be empty
+            // unless the entire input had already been resolved to a valid prefix.
+            System.out.println(sentence); //
         }
 
         for(int i=1; i<=str.length();i++) { // start from 1 (not 0) since we are using substring
             prefix=str.substring(0, i);
             suffix=str.substring(i);
             if(dict.contains(prefix)) {
-                wordBreakAddToList(suffix, dict, sentence + prefix + " ");
+                sentence += prefix+ ""; // add the new word to previously resolved sentence and space
+                wordBreakAddToList(suffix, dict, sentence);
             }
         }
 
