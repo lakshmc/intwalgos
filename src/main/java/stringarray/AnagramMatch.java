@@ -1,5 +1,7 @@
 package stringarray;
 
+import java.util.Arrays;
+
 /**
  * Created by IntelliJ IDEA.
  * User: lmohan
@@ -10,21 +12,55 @@ package stringarray;
 public class AnagramMatch {
 
     public static void main (String[] args){
-        // two strings
-       /* System.out.println(isAnagram("abcd","cbda"));// true
-        System.out.println(isAnagram("abcd","abce"));// false
+        String[][] pairs = {{"apple", "papel"}, {"carrot", "tarroc"}, {"hello", "llloh"}};
+        for (String[] pair : pairs) {
+            String word1 = pair[0];
+            String word2 = pair[1];
+            boolean anagram = isAnagramXOR(word1, word2);
+            System.out.println(word1 + ", " + word2 + ": " + anagram);
+            anagram = isAnagramSort(word1, word2);
+            System.out.println(word1 + ", " + word2 + ": " + anagram);
+            anagram = isAnagramIterative(word1, word2);
+            System.out.println(word1 + ", " + word2 + ": " + anagram);
 
-        // find if Z is anagram of X and Y.. Like X='abc' and Y='klm' and if Z='almbkc' then Z is anagram of X and Y
-        System.out.println(isAnagram("abc"+"klm","almbkc"));// true
-        System.out.println(isAnagram("abc"+"klm","almbkf"));// false*/
+            System.out.println();
 
-        System.out.println(isAnagramIterative("mom"));
-        System.out.println(isAnagramIterative("abcdefedcba"));
-        System.out.println(isAnagramIterative("abcdexfedcba"));
-        System.out.println(isAnagramIterative(""));
+            //System.out.println(anagram(word1, word2));
+        }
     }
 
-    private static boolean isAnagram(String s1, String s2) {
+    private static boolean isAnagramIterative(String str1, String str2){
+        if(str1.length()!=str2.length()){
+            return false;
+        }
+        int[] letters = new int[128];
+        for(char c: str1.toCharArray()){
+            letters[c]++;
+        }
+        for(char c: str2.toCharArray()){
+            if(letters[c]==0){
+                return false;
+            } else {
+                letters[c]--;
+            }
+        }
+        return true;
+
+    }
+
+    // using Sort
+    private static boolean isAnagramSort(String str1, String str2){
+        return sort(str1).equals(sort(str2));
+    }
+
+    private static String sort(String str){
+        char[] cArray = str.toCharArray();
+        Arrays.sort(cArray);
+        return new String(cArray);
+    }
+
+    // using XOR:
+    private static boolean isAnagramXOR(String s1, String s2) {
         return getXOR(s1)==getXOR(s2); 
     }
 
@@ -34,17 +70,5 @@ public class AnagramMatch {
             value=value^c;
         }
         return value;
-    }
-
-    private static boolean isAnagramIterative(String s1){
-        int head=0;
-        int tail =s1.length()-1;
-
-        while(head<tail){
-            if(s1.charAt(head++)!=s1.charAt(tail--)){
-                return false;
-            }
-        }
-        return true;
     }
 }
