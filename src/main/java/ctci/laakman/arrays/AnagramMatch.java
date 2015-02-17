@@ -1,4 +1,4 @@
-package stringarray;
+package ctci.laakman.arrays;
 
 import java.util.Arrays;
 
