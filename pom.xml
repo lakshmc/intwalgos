@@ -6,7 +6,11 @@
 
     <groupId>intwalgorithms</groupId>
     <artifactId>intwalgorithms</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>HttpServletRestWebservice</module>
+    </modules>
 
     <dependencies>
         <dependency>
