@@ -64,7 +64,7 @@ public class WordLadder {
                     } else if(dict.contains(newWord)){
                         wordQueue.add(newWord);
                         distanceQueue.add(currDistance+1);
-                        dict.remove(newWord); //why?
+                        dict.remove(newWord); //why(don't want to repeat the words?)
                     }
                 }
             }
