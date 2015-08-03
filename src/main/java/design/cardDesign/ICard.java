@@ -17,7 +17,7 @@ public interface ICard {
     public static final int DIAMONDS=2;
     public static final int CLUBS=3;
 
-    int getRank(); //returns a value in the range of 1 (ace) to 13 (king)
-    int getSuit(); // returns a value like ICard.HEARTS
+    int getRankNumber(); //returns a value in the range of 1 (ace) to 13 (king)
+    String getSuit(); // returns a value like ICard.HEARTS
 
 }

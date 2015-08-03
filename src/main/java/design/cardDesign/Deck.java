@@ -19,13 +19,24 @@ public class Deck implements Iterator<ICard> {
     private List<ICard> cards;
     private int index;
 
+    String[] suitArray = new String[]{"SPADES", "DIAMONDS", "CLUBS", "HEARTS"};
+    String[] rankArray = new String[]{"joker", "ace","two","three","four","five","six","seven","eight","nine",
+            "ten","JACK","QUEEN","KING"};
+
+
     public Deck() {
         cards = new ArrayList<ICard>();
-        for(int suit=ICard.SPADES; suit<ICard.CLUBS; suit++){
+
+        for(String suit: suitArray){
+            for(int i=0;i<rankArray.length;i++){
+                cards.add(new Card(rankArray[i],suit,i));
+            }
+        }
+        /*for(int suit=ICard.SPADES; suit<ICard.CLUBS; suit++){
             for(int rank=1; rank<=13; rank++){
                 cards.add(new Card(rank, suit));
             }
-        }
+        }*/
         shuffle();
     }
 
@@ -50,44 +61,48 @@ public class Deck implements Iterator<ICard> {
     }
 
 
-    // implementation for each card. Rank 1-13, Suit S,D,C,H
+    // implementation for each card. Rank 0(joker),1-13, Suit S,D,C,H
 
     /**
      * The Card class is a private class
      declared within the Deck class. There's actually no good reason to declare it within
      the Deck (the Deck.java file). However, by declaring it private, we make it
-     impossible for any code class ; it could just as easily be declared as a non-public class within
+     impossible for any code class to create cards; it could just as easily be declared as a non-public class within
      methods other than the Deck class to construct Card objects. This helps meet our original goal.
      Client programs can obtain cards from a Deck, but cannot create cards. Since the Deck supplies
      ICard objects, it's not possible to change a card once it's obtained from the Deck since the
      ICard interfaced doesn't support modification of a card
      */
     private class Card implements ICard {
-        private int rank;
-        private int suit;
-        private String name;
+        private final String rank;
+        private final int rankNumber;
+        private final String suit;
+        private final String name;
 
-        String[] suitArray = new String[]{"SPADES", "DIAMONDS", "CLUBS", "HEARTS"};
-        String[] rankArray = new String[]{"invalid", "ace","two","three","four","five","six","seven","eight","nine",
-                "ten","JACK","QUEEN","KING"};
 
-        public Card(int rank, int suit) {
+
+        public Card(String rank, String suit, int rankNumber) {
             this.rank=rank;
             this.suit=suit;
-            this.name = rankArray[this.rank]+" of "+suitArray[this.suit];
+            this.rankNumber = rankNumber;
+            this.name = rank+" of "+suit;
         }
 
         public String toString(){
-            return name;
+            return name+"("+ getRankNumber()+")";
         }
 
         @Override
-        public int getRank() {
+        public int getRankNumber() {
+            return rankNumber;
+        }
+
+        public String getRank() {
             return rank;
         }
 
         @Override
-        public int getSuit() {
+        public String getSuit() {
             return suit;
         }
     }
