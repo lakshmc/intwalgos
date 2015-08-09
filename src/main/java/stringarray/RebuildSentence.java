@@ -37,9 +37,9 @@ public class RebuildSentence {
         System.out.println(wordBreakBoolean("ilikemangoicecream", dict));
         System.out.println(wordBreakBoolean("ilikesamsungis", dict));
 
-        wordBreakAddToList("ilikemangoicecream", dict,"");
+        //wordBreakAddToList("ilikemangoicecream", dict,"");
         wordBreakAllValidCombinations("ice", dict, "");
-        System.out.println(wordBreakBoolean("ilikesamsungis", dict));
+        //System.out.println(wordBreakBoolean("ilikesamsungis", dict));
 
         wordBreakAllValidCombinations("ilikemangoicecream", dict, "");
         wordBreakAllValidCombinations("ice", dict, "");
@@ -74,15 +74,30 @@ public class RebuildSentence {
         for(int i=1;i<=len;i++){
             String prefix = str.substring(0,i);
             String suffix = str.substring(i,len);
-            if(dict.contains(prefix)){
 
+            // if the prefix is valid dictionary string
+                // if prefix is all of the incoming string of this recursion, then no need to recurse after this
+                // if there are letters left over, then check if the those resolve to valid words
+            // if false, then part of this incoming string is not valid,
+                // so it is irrelevant if the rest of the letters resolved to dictionary items or not.
+                // continue with the for loop:
+                    //  it will increment i thereby adding additional char to the prefix for the next test
+                    // words resolved so far are not affected since they are inside 'result' which remains unchanged.
+
+            if(dict.contains(prefix)){
+                // true if entire input of this recursion resolves to a dictionary item. Any fully valid string
+                // would eventually hit this true, because the very last word will match a dictionary item.
                 if(i==len){
                     result += prefix;
                     System.out.println(result);
                     return;
                 }
+                // if reached here, then there are letters left in the input string of this recursion
+                    // attach the prefix to existing sentence and a space -> upto this point it is a valid sentence
+                    // check if the rest of the input string of this recursion also resolves to a dictionary item
                 wordBreakAllValidCombinations(suffix, dict, result + prefix + " ");
             }
+
         }
     }
 
@@ -102,7 +117,7 @@ public class RebuildSentence {
             prefix=str.substring(0, i);
             suffix=str.substring(i);
             if(dict.contains(prefix)) {
-                sentence += prefix+ ""; // add the new word to previously resolved sentence and space
+                sentence += prefix+ " "; // add the new word to previously resolved sentence and space
                 wordBreakAddToList(suffix, dict, sentence);
             }
         }

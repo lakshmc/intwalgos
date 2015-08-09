@@ -1,0 +1,55 @@
+Object Instance Memory in JVM:
+Any object instance takes following memory in heap space (everything is a multiple of bytes)
+1. housekeeping data: class, ID, status flags like whether the instance is locked, whether it is reachable etc
+	- arrays - 12 bytes (8 + 4 (for array size stored as int))
+	- all other objects - 8 bytes
+2. memory for primitive fields:
+	- 1 byte: boolean, byte
+	- 2 bytes: short, char
+	- 4 bytes: int, float
+	- 8 bytes: long, double
+3. memory for reference fields: 4 bytes per object reference
+4. padding: potentially unused bytes after the object data to make every object start at an address that is a multiple of bytes. This allows JVM to access start of object data, without having to use a pointer.
+NOTE: In Hotspot, it is always multiples of 8, while in other jvm's it could be a different multiple of 8.
+
+In Hotspot, each object takes up memory size that is a multiple of 8, rounding off as needed. So
+- a bare object takes 8 bytes.
+- an object with single boolean takes 16 bytes:
+	- 8 bytes for header
+	- 1 byte for boolean value
+	- 0 for reference fields
+	- 7 bytes padding: to make the total number bytes a multiple of 8
+- an object of 8 boolean fields also takes 16 bytes:
+	- 8 bytes header
+	- 8 * 1 bytes for boolean value: 8 bytes
+	- 0 for reference fields
+	- 0 for padding: since the size is already a multiple of 8
+- an object with 2 long fields, 3 int fields and 1 boolean takes 40 bytes
+	- 8 bytes for header
+	- 2 * 8 + 3 * 4 + 1 * 1 = 29 bytes for primitive fields
+	- 0 for reference fields
+	- 3 bytes padding
+
+Arrays:
+Array is a special object. Takes 12 bytes for header (8 bytes like normal object plus 4 for array size represented as int)
+1-D
+a = int array of 10 elements
+header 12 + 10 * 4 data + 4 padding = 56
+
+2-D
+a = 10x10 int array
+ a header: 12 b
+ data = 10 * 4 bytes (object reference to each array of int)
+ 	Each object reference:
+	 header: 12 b
+	 data = 10 * 4 bytes (int value)
+	 padding = 4 bytes
+	 total: 56
+
+ padding 4 bytes
+ total: (12 + 40 + 4) + (10 * (12 + 40 +4)) = 616 bytes
+
+Note: this is bit larger than storing the same number of ints as raw int fields: 100 * 4 = 400
+
+Multi-D:
+Like 2-D, each item recursively pointing to another array until the final level which points to the primitive data or object reference
