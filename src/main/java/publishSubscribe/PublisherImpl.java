@@ -29,6 +29,14 @@ public class PublisherImpl<T> implements Publisher<T> {
     }
 
     @Override
+    public void unSubsribe(T key, Subscriber<T> subscriber) {
+        if(subscriberMap.containsKey(key)){
+            Set<Subscriber<T>> subscribers = subscriberMap.get(key);
+            subscribers.remove(subscriber);
+        }
+    }
+
+    @Override
     public void publish(T key, T message) {
         Set<Subscriber<T>> subscribers = subscriberMap.get(key);
         if(subscribers!=null){

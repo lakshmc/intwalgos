@@ -17,6 +17,11 @@ public class MainRunner {
         publisher.publish("987", "this is 987");
         publisher.publish("1000", "this is a 1000");
         publisher.publish("987", "this is a 987");
+
+
+        publisher.unSubsribe("123", subscriber2);
+
+        publisher.publish("123", "this is 123");
     }
 
 }

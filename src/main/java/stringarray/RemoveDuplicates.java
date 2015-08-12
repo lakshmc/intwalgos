@@ -16,16 +16,19 @@ public class RemoveDuplicates {
         System.out.println(removeDuplicates(str));
         System.out.println(removeDuplicatesBySorting(str));
         System.out.println(removeDuplicatesWithSet(str));
+        removeDuplicatesSetWithOrder(str);
 
         str="aaaaaaa";
         System.out.println(removeDuplicates(str));
         System.out.println(removeDuplicatesBySorting(str));
         System.out.println(removeDuplicatesWithSet(str));
+        removeDuplicatesSetWithOrder(str);
 
         str="abcdefgh";
         System.out.println(removeDuplicates(str));
         System.out.println(removeDuplicatesBySorting(str));
         System.out.println(removeDuplicatesWithSet(str));
+        removeDuplicatesSetWithOrder(str);
 
 
     }
@@ -71,6 +74,31 @@ public class RemoveDuplicates {
         }
         noDuplicatesArray[j++] = array[length-1];
         return new String(noDuplicatesArray);
+    }
+
+    private static void removeDuplicatesSetWithOrder(String string) {
+        Set<Character> set = new HashSet<Character>();
+        char[] cArr = string.toCharArray();
+        for(int i = 0;i<cArr.length;i++){
+            if(!set.add(cArr[i])){
+                cArr[i]='\0'; // null character
+            }
+        }
+
+        int uniqueIndex=0;
+        if(set.size()<cArr.length){
+            for(int i=0;i<cArr.length;i++){
+                if(cArr[i]!='\0' ){
+                    if(uniqueIndex!=i){
+                        cArr[uniqueIndex++]=cArr[i];
+                        cArr[i]='\0';
+                    } else {
+                        uniqueIndex++;
+                    }
+                }
+            }
+        }
+        System.out.println("After: Using HashSet, Keeps order by marking the duplicates in array: "+new String(cArr));
     }
 
 }
