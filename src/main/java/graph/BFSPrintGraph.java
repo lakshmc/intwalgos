@@ -2,12 +2,14 @@ package graph;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * Created by lchan39 on 1/7/15.
  */
 public class BFSPrintGraph {
-    public static void main(String[] args) {
+
+    private static GraphNode clearNodeVisited() {
         GraphNode nodeA = new GraphNode("A");
         GraphNode nodeB = new GraphNode("B");
         GraphNode nodeC = new GraphNode("C");
@@ -47,7 +49,19 @@ public class BFSPrintGraph {
         nodeM.addChildren(nodeU,nodeV);
         nodeL.addChildren(nodeX,nodeW);
 
+        return nodeA;
+    }
+
+    public static void main(String[] args) {
+        GraphNode nodeA = clearNodeVisited();
+
         BFSPrint(nodeA);
+        System.out.println();
+        nodeA = clearNodeVisited();
+        BFSPrintSingleQueue(nodeA);
+        System.out.println();
+        nodeA = clearNodeVisited();
+        DFS(nodeA);
     }
 
     private static void BFSPrint(GraphNode root) {
@@ -64,6 +78,52 @@ public class BFSPrintGraph {
                 currentLevel.addAll(nextLevel);
                 nextLevel.clear();
                 System.out.print("\nLevel: " + level + " size: " + currentLevel.size() + ": ");
+            }
+        }
+    }
+
+    // using single queue, but not new line for new level
+    private static void BFSPrintSingleQueue(GraphNode root) {
+        Queue currentLevel = new LinkedList();
+        currentLevel.add(root);
+        root.visited=true;
+        System.out.println(" "+root.value+" ");
+        int level =0;
+        while(!currentLevel.isEmpty()){
+            GraphNode currentNode = (GraphNode) currentLevel.remove(); // if queue empty, throws exception, will never happen
+            for(GraphNode graphNode: currentNode.children){
+                if(!graphNode.visited){
+                    currentLevel.add(graphNode);
+                    graphNode.visited=true;
+                    System.out.println(" "+graphNode.value+" ");
+                }
+            }
+        }
+    }
+
+
+
+    private static void DFS(GraphNode root){
+        Stack stack = new Stack();
+        stack.push(root);
+        root.visited=true;
+        System.out.println(" "+root.value+" ");
+
+        while(!stack.isEmpty()){
+            GraphNode node = (GraphNode)stack.peek(); // get head not, don't remove, since we are dealing with one child at a time
+            GraphNode child = null;
+            for (GraphNode child1: node.children){
+                if(!child1.visited){
+                    child=child1;
+                    break;
+                }
+            }
+            if(child!=null){
+                child.visited=true;
+                System.out.println(" "+child.value+" ");
+                stack.push(child);
+            } else {
+                stack.pop();
             }
         }
     }

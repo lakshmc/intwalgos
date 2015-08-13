@@ -10,6 +10,7 @@ import java.util.List;
 public class GraphNode {
     public String value;
     public List<GraphNode> children;
+    public boolean visited;
 
     GraphNode(String value){
         this.value = value;

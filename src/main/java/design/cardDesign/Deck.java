@@ -27,6 +27,7 @@ public class Deck implements Iterator<ICard> {
     public Deck() {
         cards = new ArrayList<ICard>();
 
+        // produces 56 cards ((1-13)+joker = 14 * 4 suits = 56
         for(String suit: suitArray){
             for(int i=0;i<rankArray.length;i++){
                 cards.add(new Card(rankArray[i],suit,i));
@@ -80,8 +81,7 @@ public class Deck implements Iterator<ICard> {
         private final String name;
 
 
-
-        public Card(String rank, String suit, int rankNumber) {
+        private Card(String rank, String suit, int rankNumber) {
             this.rank=rank;
             this.suit=suit;
             this.rankNumber = rankNumber;
