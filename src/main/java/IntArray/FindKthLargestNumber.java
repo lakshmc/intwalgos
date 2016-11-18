@@ -36,7 +36,7 @@ public class FindKthLargestNumber {
         int k = 4;
 
         //largestFirstpartition(A, 0, A.length - 1);
-        int value = FindKthLargestNumber.quickselect(A, k); // find largest Kth element
+        int value = quickselect(A, k); // find largest Kth element
         System.out.println(k+"th largest item: "+value);
 
         // print the sorted array to see where the item actually is

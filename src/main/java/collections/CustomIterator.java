@@ -43,12 +43,10 @@ public class CustomIterator<E> implements Iterator<E>{
     }
 
 
-    @Override
     public boolean hasNext() {
         return  iteratorQueue.peek()!=null && iteratorQueue.peek().hasNext();
     }
 
-    @Override
     public E next() {
         if(!hasNext()){
             throw new IllegalStateException("Iterator hasNext returned false!!");
@@ -61,7 +59,6 @@ public class CustomIterator<E> implements Iterator<E>{
         return value;
     }
 
-    @Override
     public void remove() {
         iteratorQueue.poll();
     }

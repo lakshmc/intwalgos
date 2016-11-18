@@ -14,7 +14,7 @@ import java.util.Set;
 public class StringPermutations {
 
     public static void main(String[] args) {
-        String str = "abbc";
+        String str = "abcd";
         List<String> perms = getPerms(str); // uses arrays
         //System.out.println("perms"+"("+perms.size()+")"+" = " + perms);
         // using StringBuilder and HashSet to restrict duplicates

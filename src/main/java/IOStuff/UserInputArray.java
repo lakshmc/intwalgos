@@ -35,7 +35,7 @@ public class UserInputArray {
 
         try{
             int i = s.nextInt();
-            while(i>0){
+            while(i>-1){
                 numbers.add(i);
                 System.out.println("Enter number:");
                 i = s.nextInt();

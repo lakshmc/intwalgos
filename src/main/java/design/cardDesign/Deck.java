@@ -46,17 +46,14 @@ public class Deck implements Iterator<ICard> {
         index=0;
     }
 
-    @Override
     public boolean hasNext() {
         return index < cards.size(); // could simply check for <52
     }
 
-    @Override
     public ICard next() {
         return cards.get(index++);
     }
 
-    @Override
     public void remove() {
         throw new UnsupportedOperationException("Cannot remove from deck!");
     }
@@ -92,7 +89,6 @@ public class Deck implements Iterator<ICard> {
             return name+"("+ getRankNumber()+")";
         }
 
-        @Override
         public int getRankNumber() {
             return rankNumber;
         }
@@ -101,7 +97,6 @@ public class Deck implements Iterator<ICard> {
             return rank;
         }
 
-        @Override
         public String getSuit() {
             return suit;
         }
