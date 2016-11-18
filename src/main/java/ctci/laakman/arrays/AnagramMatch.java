@@ -59,7 +59,7 @@ public class AnagramMatch {
         return new String(cArray);
     }
 
-    // using XOR:
+    // using XOR: fails for some test cases eg: "xaabby","xccddy" :(
     private static boolean isAnagramXOR(String s1, String s2) {
         return getXOR(s1)==getXOR(s2); 
     }
