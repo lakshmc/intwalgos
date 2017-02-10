@@ -1,5 +1,7 @@
 import timeStuff.TimeWatcher;
 
+import java.util.Date;
+
 /**
  * for numbers 1 to 100, print Fizz for multiples of 5, Buzz for multiples of 3,
  * FizzBuzz for multiples of both 5 and 3 and print the number if not multiple of 3 or 5 or 15
@@ -7,6 +9,9 @@ import timeStuff.TimeWatcher;
 
 public class FizzBuzz {
     public static void main(String args[]){
+
+        System.out.println(new Date(1479574889524L));
+
         TimeWatcher.startTime();
         fizzBuzz(100);
         TimeWatcher.printElapsedTime();
